@@ -1,4 +1,3 @@
-// src/User/LoginForm.js
 import React from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import toast from "react-hot-toast";
@@ -19,6 +18,7 @@ function LoginForm() {
   };
 
   const onSubmit = async (values) => {
+    console.log(values);
     try {
       const data = await dispatch(loginAsync(values));
 
@@ -28,30 +28,30 @@ function LoginForm() {
 
       const token = localStorage.getItem("jwt");
       const is_admin = localStorage.getItem("is_admin");
-
       if (token && is_admin === "false") {
-        toast.success("Login successful");
         navigate("/");
-        window.location.reload();
+        window.location.reload("true");
+        toast.success("login successfully");
       }
-
       if (token && is_admin === "true") {
-        toast.success("Admin login successful");
         navigate("/");
-        window.location.reload();
+        window.location.reload("true");
+
+        toast.success(" admin login successfully");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error(error);
     }
   };
 
   const validationSchema = yup.object({
-    username: yup.string().required("Username is required"),
-    password: yup.string().required("Password is required"),
+    username: yup.string().required("Username must be required"),
+    password: yup.string().required("Password must be required"),
   });
 
   return (
-    <Box>
+    <>
+    <Box >
       <Container
         maxWidth="xs"
         sx={{
@@ -60,7 +60,7 @@ function LoginForm() {
           alignItems: "center",
           flexDirection: "column",
           minHeight: "70vh",
-          marginTop: "100px",
+          marginTop:"100px"
         }}
       >
         <Typography variant="h4" align="center" gutterBottom>
@@ -72,35 +72,50 @@ function LoginForm() {
           onSubmit={onSubmit}
         >
           <Form>
-            <Grid container spacing={2}>
+            <Grid sx={{
+              
+            
+
+            }} container spacing={2}>
               <Grid item xs={12}>
                 <Field
                   as={TextField}
                   type="text"
                   label="Username"
-                  name="username"
                   variant="outlined"
+                  name="username"
                   fullWidth
                 />
-                <Box sx={{ color: "red" }}>
+                <Box
+
+                  sx={{ color: "red" }}
+                >
                   <ErrorMessage name="username" />
                 </Box>
+                
               </Grid>
               <Grid item xs={12}>
                 <Field
                   as={TextField}
                   type="password"
                   label="Password"
-                  name="password"
                   variant="outlined"
+                  name="password"
                   fullWidth
                 />
                 <Box sx={{ color: "red" }}>
-                  <ErrorMessage name="password" />
+                  <ErrorMessage name="password" />  
                 </Box>
+              
               </Grid>
+
               <Grid item xs={12}>
-                <Button type="submit" variant="contained" color="primary" fullWidth>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
                   Login
                 </Button>
               </Grid>
@@ -108,9 +123,9 @@ function LoginForm() {
           </Form>
         </Formik>
       </Container>
-    </Box>
+      </Box>
+    </>
   );
 }
 
 export default LoginForm;
-
