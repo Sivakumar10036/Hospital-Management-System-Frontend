@@ -47,7 +47,7 @@ const AddDoctorForm = ({fetchdata}) => {
     try {
       const doctorData = { name, expertise, image,date,contact,email,password,desc,ammount };
       console.log(doctorData)
-     const response=  await axios.post('http://localhost:8080/doctor', doctorData,{
+     const response=  await axios.post('https://hospital-management-system-backend-8.onrender.com//doctor', doctorData,{
         headers: {
             
             "authorization": localStorage.getItem("jwt")
