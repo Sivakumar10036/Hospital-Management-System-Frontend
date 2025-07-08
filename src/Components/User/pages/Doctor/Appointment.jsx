@@ -53,7 +53,7 @@ export default function Cart() {
   const MakePayment = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/patient/payment",
+        "https://hospital-management-system-backend-8.onrender.com/patient/payment",
         {
           status: "paid",
           _id: id,
