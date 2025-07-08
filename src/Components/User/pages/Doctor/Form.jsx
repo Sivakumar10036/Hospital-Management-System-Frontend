@@ -32,7 +32,7 @@ const AppointmentForm = () => {
 
   const doctorDetails= async(id)=>{
     try{
-      const {data}= await axios.get(`http://localhost:8080/public/doctor/${id}`,{headers:{
+      const {data}= await axios.get(`https://hospital-management-system-backend-8.onrender.com/public/doctor/${id}`,{headers:{
         authorization:token
       }})
       
