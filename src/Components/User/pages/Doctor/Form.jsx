@@ -84,7 +84,7 @@ const AppointmentForm = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/patient/appointment",
+        "https://hospital-management-system-backend-8.onrender.com/patient/appointment",
         appointmentData,
         {
           headers: {
